@@ -1,0 +1,30 @@
+#!/bin/bash
+
+for sqlFile in tests/input/*.sql
+do
+    OUT=$(./grdb-record-generator "$sqlFile" . | sed 's/Generated //g')
+    DIFF=$(diff "$OUT" "tests/output/$OUT")
+    rm -rf "$OUT"
+
+    ACTUAL=$(echo "$DIFF" | grep "<" | sed 's/^<//g')
+    EXPECTED=$(echo "$DIFF" | grep ">" | sed 's/^>//g')
+
+    if [ "x$DIFF" == "x" ]; then
+        echo "Test passed: $sqlFile" 
+    else
+        echo "Test failed for $sqlFile against tests/output/$OUT"
+        echo
+        echo "Expected:"
+        echo
+        echo "$EXPECTED"
+        echo
+        echo "Actual:"
+        echo
+        echo "$ACTUAL"
+        echo
+        exit 1
+    fi
+done
+
+echo "All tests passed!"
+

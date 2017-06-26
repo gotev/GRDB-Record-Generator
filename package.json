@@ -1,0 +1,39 @@
+{
+  "name": "grdb-record-generator",
+  "version": "1.0.8",
+  "description": "Generates GRDB record in swift from CREATE TABLE statements",
+  "scripts": {
+    "test": "./test"
+  },
+  "engines": {
+    "node": ">= 6"
+  },
+  "bugs": {
+    "url": "https://github.com/gotev/GRDB-Record-Generator/issues"
+  },
+  "bin": {
+    "grdb-record-generator": "./grdb-record-generator"
+  },
+  "main": "./grdb-record-generator",
+  "keywords": [
+    "grdb",
+    "create",
+    "table",
+    "sqlite",
+    "record",
+    "swift",
+    "code",
+    "generate",
+    "generation",
+    "ios"
+  ],
+  "author": "Aleksandar Gotev",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gotev/GRDB-Record-Generator.git"
+  },
+  "dependencies": {
+    "sqlite-parser": "^1.0.1"
+  }
+}

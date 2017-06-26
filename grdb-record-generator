@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+if (process.argv.length < 3) {
+    console.log("Please provide an SQL file to parse as first argument");
+    process.exit(-1);
+}
+
+if (process.argv.length < 4) {
+    console.log("Please provide an output directory as second argument");
+    process.exit(-2);
+}
+
+const fs = require('fs');
+const path = require('path');
+const configPath = path.resolve(__dirname, "./config.js");
+const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
+const createTableParser = require("./lib/createTableParser");
+const swiftRecordGenerator = require("./lib/swiftRecordGenerator");
+
+const sql = fs.readFileSync(process.argv[2], "utf8");
+const outDir = process.argv[3];
+
+const createTableDDL = createTableParser(sql);
+const swiftCode = swiftRecordGenerator(sql, createTableDDL, config);
+
+fs.writeFileSync(`${outDir}/${createTableDDL.swiftClassName}.swift`, swiftCode);
+console.log(`Generated ${createTableDDL.swiftClassName}.swift`);

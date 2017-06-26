@@ -1,0 +1,8 @@
+CREATE TABLE user_car (
+    _id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    car_id INTEGER NOT NULL,
+    UNIQUE(user_id, car_id),
+    FOREIGN KEY (user_id) REFERENCES user(_id) ON DELETE CASCADE,
+    FOREIGN KEY (car_id) REFERENCES car(_id) ON DELETE CASCADE
+)
