@@ -24,7 +24,7 @@ CREATE TABLE user (
 )
 ```
 
-into `UserModel.swift`:
+into `UserModel.swift` (Swift 4):
 ```swift
 import Foundation
 import GRDB
@@ -116,7 +116,7 @@ For more info, please check: https://stackoverflow.com/a/5926706
 
 ## License <a name="license"></a>
 
-    Copyright (C) 2017 Aleksandar Gotev
+    Copyright (C) 2017-2018 Aleksandar Gotev
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
