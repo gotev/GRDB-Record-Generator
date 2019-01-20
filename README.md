@@ -39,6 +39,16 @@ class UserModel: Record {
     var wizard_status: Int64 = 0
     var color: String?
 
+    static let createTable = "CREATE TABLE \(databaseTableName) (" +
+            "_id INTEGER NOT NULL PRIMARY KEY, " +
+            "name TEXT NULL DEFAULT '', " +
+            "surname TEXT NULL DEFAULT '', " +
+            "email TEXT NOT NULL, " +
+            "image TEXT NULL DEFAULT '', " +
+            "wizard_status INTEGER NOT NULL DEFAULT 0, " +
+            "color TEXT " +
+            ") "
+
 
     override class var databaseTableName: String {
         return "user"
@@ -60,13 +70,13 @@ class UserModel: Record {
     }
 
     required init(row: Row) {
-        _id = row.value(Columns._id)
-        name = row.value(Columns.name)
-        surname = row.value(Columns.surname)
-        email = row.value(Columns.email)
-        image = row.value(Columns.image)
-        wizard_status = row.value(Columns.wizard_status)
-        color = row.value(Columns.color)
+        _id = row[Columns._id]
+        name = row[Columns.name]
+        surname = row[Columns.surname]
+        email = row[Columns.email]
+        image = row[Columns.image]
+        wizard_status = row[Columns.wizard_status]
+        color = row[Columns.color]
         super.init(row: row)
     }
 
@@ -96,7 +106,7 @@ The generator has some configuration options. It has been a choice to not add th
 ### Options
 * `new_line_character`: Defines the character to use as a new line character for the output swift files. Defaults to `\n`.
 * `indentation`: Defines how many spaces to use for a single indentation level of the output swift code. Defaults to `4`.
-* `add_create_table`: if you set this to `true`, in the generated swift file you will also get a `static let createTable` with the needed SQL to create the table. Defaults to `false`.
+* `add_create_table`: if you set this to `true`, in the generated swift file you will also get a `static let createTable` with the needed SQL to create the table. Defaults to `true`.
 
 ### Where is the configuration file?
 When you install the module locally, you can find the configuration at this path `./node_modules/grdb-record-generator/config.js`
@@ -116,7 +126,7 @@ For more info, please check: https://stackoverflow.com/a/5926706
 
 ## License <a name="license"></a>
 
-    Copyright (C) 2017-2018 Aleksandar Gotev
+    Copyright (C) 2017-2019 Aleksandar Gotev
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
