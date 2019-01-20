@@ -2,12 +2,15 @@
 
 [![NPM](https://nodei.co/npm/grdb-record-generator.png)](https://nodei.co/npm/grdb-record-generator/)
 
-Generates GRDB Records from SQLite CREATE TABLE
+Generates [GRDB Records](https://github.com/groue/GRDB.swift) from SQLite CREATE TABLE.
 
 ## Setup
 ```shell
 $ [sudo] npm install grdb-record-generator -g
 ```
+
+## Compatibility
+GRDB 3.6+
 
 ## What it does?
 
