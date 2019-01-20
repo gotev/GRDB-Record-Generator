@@ -8,6 +8,15 @@ class UserCarModel: Record {
     var user_id: Int64
     var car_id: Int64
 
+    static let createTable = "CREATE TABLE \(databaseTableName) (" +
+            "_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+            "user_id INTEGER NOT NULL, " +
+            "car_id INTEGER NOT NULL, " +
+            "UNIQUE(user_id, car_id), " +
+            "FOREIGN KEY (user_id) REFERENCES user(_id) ON DELETE CASCADE, " +
+            "FOREIGN KEY (car_id) REFERENCES car(_id) ON DELETE CASCADE " +
+            ") "
+
 
     override class var databaseTableName: String {
         return "user_car"
@@ -26,9 +35,9 @@ class UserCarModel: Record {
     }
 
     required init(row: Row) {
-        _id = row.value(Columns._id)
-        user_id = row.value(Columns.user_id)
-        car_id = row.value(Columns.car_id)
+        _id = row[Columns._id]
+        user_id = row[Columns.user_id]
+        car_id = row[Columns.car_id]
         super.init(row: row)
     }
 

@@ -12,6 +12,16 @@ class UserModel: Record {
     var wizard_status: Int64 = 0
     var color: String?
 
+    static let createTable = "CREATE TABLE \(databaseTableName) (" +
+            "_id INTEGER NOT NULL PRIMARY KEY, " +
+            "name TEXT NULL DEFAULT '', " +
+            "surname TEXT NULL DEFAULT '', " +
+            "email TEXT NOT NULL, " +
+            "image TEXT NULL DEFAULT '', " +
+            "wizard_status INTEGER NOT NULL DEFAULT 0, " +
+            "color TEXT " +
+            ") "
+
 
     override class var databaseTableName: String {
         return "user"
@@ -33,13 +43,13 @@ class UserModel: Record {
     }
 
     required init(row: Row) {
-        _id = row.value(Columns._id)
-        name = row.value(Columns.name)
-        surname = row.value(Columns.surname)
-        email = row.value(Columns.email)
-        image = row.value(Columns.image)
-        wizard_status = row.value(Columns.wizard_status)
-        color = row.value(Columns.color)
+        _id = row[Columns._id]
+        name = row[Columns.name]
+        surname = row[Columns.surname]
+        email = row[Columns.email]
+        image = row[Columns.image]
+        wizard_status = row[Columns.wizard_status]
+        color = row[Columns.color]
         super.init(row: row)
     }
 
